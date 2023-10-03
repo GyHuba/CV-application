@@ -1,4 +1,10 @@
+import {useContext} from "react";
+import { GeneralInformationContext } from "../contexts/GeneralInformatioContext";
+
 export default function GeneralInformationComponent() {
+
+  const [formData, setFormData] = useContext(GeneralInformationContext);
+
   return (
     <>
       <div className="form-container">
@@ -11,6 +17,9 @@ export default function GeneralInformationComponent() {
               name="name"
               id="name"
               placeholder="Huba Gyihor"
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -20,6 +29,9 @@ export default function GeneralInformationComponent() {
               name="adress"
               id="adress"
               placeholder="Andrassy street 42."
+              onChange={(e) =>
+                setFormData({ ...formData, adress: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -29,6 +41,9 @@ export default function GeneralInformationComponent() {
               name="email"
               id="email"
               placeholder="fakeemail@fakeemail.com"
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -38,6 +53,9 @@ export default function GeneralInformationComponent() {
               name="phone"
               id="phone"
               placeholder="+46706539424"
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -47,6 +65,9 @@ export default function GeneralInformationComponent() {
               name="website"
               id="website"
               placeholder="randomwebsite.com"
+              onChange={(e) =>
+                setFormData({ ...formData, website: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -56,15 +77,9 @@ export default function GeneralInformationComponent() {
               name="date-of-birth"
               id="date-of-birth"
               placeholder="1999.06.15"
-            ></input>
-          </div>
-          <div className="input-container">
-            <label htmlFor="national">Nationality</label>
-            <input
-              type="text"
-              name="national"
-              id="national"
-              placeholder="Swedish"
+              onChange={(e) =>
+                setFormData({ ...formData, dateOfirth: e.target.value })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -76,6 +91,8 @@ export default function GeneralInformationComponent() {
               placeholder="My name is Huba Gyihor. I'm a junior frotnend developer..."
               rows="5"
               cols="33"
+              onChange={(e) =>
+                setFormData({ ...formData, aboutYou: e.target.value })}              
             ></input>
           </div>
         </form>

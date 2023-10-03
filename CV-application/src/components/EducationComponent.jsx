@@ -1,9 +1,35 @@
+import { useState } from "react";
+import {useContext} from "react";
+import {EducationInformationContext} from "../contexts/EducationInformationContext.jsx"
+import { v4 as uuidv4 } from 'uuid';
+
 export default function EducationComponent() {
+
+  const [educationData, setEducationData] = useState({
+    schoolName: "",
+    titleOfStudy: "",
+    beginingOfStudies: "",
+    endOfStudies: "",
+  });
+
+  const [educationDatas, setEducationDatas] = useContext(EducationInformationContext)
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setEducationDatas([...educationDatas, educationData])
+    setEducationData({
+      schoolName: "",
+      titleOfStudy: "",
+      beginingOfStudies: "",
+      endOfStudies: "",
+    })
+  }
+
   return (
     <>
       <div className="form-container">
         <h2>Education</h2>
-        <form>
+        <form onSubmit ={handleSubmit}>
           <div className="input-container">
             <label htmlFor="school-name">School name</label>
             <input
@@ -11,6 +37,13 @@ export default function EducationComponent() {
               name="school-name"
               id="school-name"
               placeholder="Progmatic Academy"
+              value={educationData.schoolName}
+              onChange={(e) =>
+                setEducationData({
+                  ...educationData,
+                  schoolName: e.target.value,
+                })
+              }
             ></input>
           </div>
           <div className="input-container">
@@ -20,16 +53,49 @@ export default function EducationComponent() {
               name="title-of-study"
               id="title-of-study"
               placeholder="Frontend developer"
+              value={educationData.titleOfStudy}
+              onChange={(e) =>
+                setEducationData({
+                  ...educationData,
+                  titleOfStudy: e.target.value,
+                })
+              }
             ></input>
           </div>
           <div className="date-container">
             <div className="input-container">
-                <label htmlFor="start-date">Begining of studies</label>
-                <input type="date" id="start-date" name="start-date"/>
+              <label htmlFor="start-date">Begining of studies</label>
+              <input
+                type="date"
+                id="start-date"
+                name="start-date"
+              value={educationData.beginingOfStudies}
+                onChange={(e) =>
+                  setEducationData({
+                    ...educationData,
+                    beginingOfStudies: e.target.value,
+                  })
+                }
+              />
             </div>
             <div className="input-container">
-                <label htmlFor="end-date">End of studies</label>
-                <input type="date" id="end-date" name="end-date"/>
+              <label htmlFor="end-date">End of studies</label>
+              <input
+                type="date"
+                id="end-date"
+                name="end-date"
+              value={educationData.endOfStudies}
+                onChange={(e) =>
+                  setEducationData({
+                    ...educationData,
+                    endOfStudies: e.target.value,
+                })
+                }
+              />
+            </div>
+            <div className="btn-wrap">
+              <button type="button">Cancel</button>
+              <button type="submit" onClick={()=>setEducationData({...educationData, id:uuidv4()})} >Submit</button>
             </div>
           </div>
         </form>
