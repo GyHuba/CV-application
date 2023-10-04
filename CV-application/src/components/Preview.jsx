@@ -1,20 +1,37 @@
 import { EducationInformationContext } from "../contexts/EducationInformationContext";
 import { GeneralInformationContext } from "../contexts/GeneralInformatioContext";
 import { useContext } from "react";
+import { ImageContext } from "../contexts/ImageContext";
 
 export default function Preview() {
+  const [formData] = useContext(GeneralInformationContext);
+  const [educationDatas, setEducationDatas] = useContext(
+    EducationInformationContext
+  );
+  const [imageUpload] = useContext(ImageContext);
 
-   const [formData] = useContext(GeneralInformationContext)
-   const [educationDatas] = useContext(EducationInformationContext)
+  function formatImgUrl() {
+    if (imageUpload !== null) {
+      const url = URL.createObjectURL(imageUpload);
+      return url;
+    }
+  }
 
+  function deleteEducation(idx) {
+    const newArray = educationDatas.filter((data) => data.id != idx);
+    setEducationDatas(newArray);
+  }
 
   return (
     <>
       <div className="preview-page">
         <div className="header">
-          <div className="profile-pics"></div>
+          <div
+            className="profile-pics"
+            style={{ backgroundImage: `url(${formatImgUrl()})` }}
+          ></div>
           <div className="personal-informations">
-            <span className="personal-info name">{formData.name}</span>
+            <h2 className="personal-info name">{formData.name}</h2>
             <div className="data-container">
               <i className="fa fa-home"></i>
               <span>{formData.adress}</span>
@@ -26,13 +43,13 @@ export default function Preview() {
               </div>
               <div className="data-container">
                 <i className="fa fa-mobile-phone"></i>
-                <span>{formData.phone}</span>
+                <span>+{formData.phone}</span>
               </div>
             </div>
             <div className="personal-info">
               <div className="data-container">
                 <i className="fa fa-globe"></i>
-                <span>{formData.webpage}</span>
+                <span>{formData.website}</span>
               </div>
               <div className="data-container">
                 <i className="fas fa-calendar"></i>
@@ -41,28 +58,28 @@ export default function Preview() {
             </div>
           </div>
         </div>
-        <div className="about-you">
-            <span className="title"></span>
-            <div className="information">
-                {formData.aboutYou}
-            </div>
-        </div>
         <div className="education">
-        <span className="title">Education</span>
-        {educationDatas.map(data =>(
+          <h2 className="title">Education</h2>
+          {educationDatas.map((data) => (
             <div key={data.id}>
-                <h3>{data.titleOfStudy}</h3>
-                <span>School: {data.schoolName}</span>
-                <div className="time-wraper">
-                    <span>Begining of studies: {data.beginingOfStudies}</span>
-                    <span>End of studies: {data.endOfStudies}</span>
-                </div>
+              <h3>{data.titleOfStudy}</h3>
+              <span>School: {data.schoolName}</span>
+              <div className="time-wraper">
+                <span>Begining of studies: {data.beginingOfStudies}</span>
+                <span>End of studies: {data.endOfStudies}</span>
+              </div>
+              <button
+                onClick={() => {
+                  deleteEducation(data.id);
+                }}
+              >
+                Delete
+              </button>
             </div>
-        ))}
+          ))}
         </div>
         <div className="work-experience">
-        <span className="title">Work experience</span>
-
+          <h2 className="title">Work experience</h2>
         </div>
       </div>
     </>

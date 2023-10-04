@@ -1,9 +1,11 @@
-import {useContext} from "react";
+/* eslint-disable no-unused-vars */
+import { useContext } from "react";
 import { GeneralInformationContext } from "../contexts/GeneralInformatioContext";
+import { ImageContext } from "../contexts/ImageContext";
 
 export default function GeneralInformationComponent() {
-
   const [formData, setFormData] = useContext(GeneralInformationContext);
+  const [imageUpload, setImageUpload] = useContext(ImageContext);
 
   return (
     <>
@@ -29,6 +31,7 @@ export default function GeneralInformationComponent() {
               name="adress"
               id="adress"
               placeholder="Andrassy street 42."
+              maxLength={30}
               onChange={(e) =>
                 setFormData({ ...formData, adress: e.target.value })
               }
@@ -41,6 +44,7 @@ export default function GeneralInformationComponent() {
               name="email"
               id="email"
               placeholder="fakeemail@fakeemail.com"
+              maxLength={30}
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
@@ -53,6 +57,7 @@ export default function GeneralInformationComponent() {
               name="phone"
               id="phone"
               placeholder="+46706539424"
+              maxLength={30}
               onChange={(e) =>
                 setFormData({ ...formData, phone: e.target.value })
               }
@@ -65,6 +70,7 @@ export default function GeneralInformationComponent() {
               name="website"
               id="website"
               placeholder="randomwebsite.com"
+              maxLength={50}
               onChange={(e) =>
                 setFormData({ ...formData, website: e.target.value })
               }
@@ -83,17 +89,18 @@ export default function GeneralInformationComponent() {
             ></input>
           </div>
           <div className="input-container">
-            <label htmlFor="about-you">About you</label>
+            <label htmlFor="img">Upload image</label>
             <input
-              type="textarea"
-              name="about-you"
-              id="about-you"
-              placeholder="My name is Huba Gyihor. I'm a junior frotnend developer..."
-              rows="5"
-              cols="33"
-              onChange={(e) =>
-                setFormData({ ...formData, aboutYou: e.target.value })}              
-            ></input>
+              type="file"
+              id="img"
+              name="img"
+              accept="image/jpeg, image/png, image/jpg"
+              onChange={(e) => {
+                {
+                  setImageUpload(e.target.files[0]);
+                }
+              }}
+            />
           </div>
         </form>
       </div>

@@ -5,15 +5,16 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function EducationComponent() {
 
+  
   const [educationData, setEducationData] = useState({
     schoolName: "",
     titleOfStudy: "",
     beginingOfStudies: "",
     endOfStudies: "",
   });
-
+  
   const [educationDatas, setEducationDatas] = useContext(EducationInformationContext)
-
+  
   function handleSubmit(e){
     e.preventDefault();
     setEducationDatas([...educationDatas, educationData])
@@ -28,7 +29,6 @@ export default function EducationComponent() {
   return (
     <>
       <div className="form-container">
-        <h2>Education</h2>
         <form onSubmit ={handleSubmit}>
           <div className="input-container">
             <label htmlFor="school-name">School name</label>
@@ -93,10 +93,7 @@ export default function EducationComponent() {
                 }
               />
             </div>
-            <div className="btn-wrap">
-              <button type="button">Cancel</button>
               <button type="submit" onClick={()=>setEducationData({...educationData, id:uuidv4()})} >Submit</button>
-            </div>
           </div>
         </form>
       </div>
