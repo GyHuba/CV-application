@@ -4,10 +4,10 @@ import { useState } from "react"
 import { EducationInformationContext } from "./EducationInformationContext"
 
 export const EducationInformationContextProvider = (props) => {
-    const [formDatas, setFormDatas] = useState([])
+    const [educationDatas, setEducationDatas] = useState([])
 
     return(
-        <EducationInformationContext.Provider value={[formDatas, setFormDatas]}>
+        <EducationInformationContext.Provider value={[educationDatas, setEducationDatas]}>
             {props.children}
         </EducationInformationContext.Provider>
     )

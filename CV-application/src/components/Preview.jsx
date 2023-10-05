@@ -2,12 +2,14 @@ import { EducationInformationContext } from "../contexts/EducationInformationCon
 import { GeneralInformationContext } from "../contexts/GeneralInformatioContext";
 import { useContext } from "react";
 import { ImageContext } from "../contexts/ImageContext";
+import { ExperienceContext } from "../contexts/ExperienceContext";
 
 export default function Preview() {
   const [formData] = useContext(GeneralInformationContext);
   const [educationDatas, setEducationDatas] = useContext(
     EducationInformationContext
   );
+  const [experienceData, setExperienceData] = useContext(ExperienceContext)
   const [imageUpload] = useContext(ImageContext);
 
   function formatImgUrl() {
@@ -20,6 +22,11 @@ export default function Preview() {
   function deleteEducation(idx) {
     const newArray = educationDatas.filter((data) => data.id != idx);
     setEducationDatas(newArray);
+  }
+
+  function deleteExperience(idx) {
+    const newArray = experienceData.filter((data) => data.id != idx);
+    setExperienceData(newArray);
   }
 
   return (
@@ -80,6 +87,24 @@ export default function Preview() {
         </div>
         <div className="work-experience">
           <h2 className="title">Work experience</h2>
+          {experienceData.map((data)=>(
+            <div key={data.id}>
+              <h3>{data.positionTitle}</h3>
+              <span>Company: {data.companyName}</span>
+              <div className="responsibilities">{data.responsibilities}</div>
+              <div className="time-wraper">
+                <span>Begining of work: {data.beginingOfWork}</span>
+                <span>End of work: {data.endOfWork}</span>
+              </div>
+              <button
+                onClick={() => {
+                  deleteExperience(data.id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          ))}
         </div>
       </div>
     </>

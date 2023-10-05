@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ExperienceContext } from "../contexts/ExperienceContext";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function ExperienceComponent() {
+
   const [experienceForm, setExperienceForm] = useState({
     companyName: "",
     positionTitle: "",
@@ -9,11 +13,25 @@ export default function ExperienceComponent() {
     endOfWork: "",
   });
 
+  const [experienceData, setExperienceData] = useContext(ExperienceContext)
+
+  function handleSubmit(e){
+    e.preventDefault();
+    setExperienceData([...experienceData, experienceForm])
+    setExperienceForm({
+    companyName: "",
+    positionTitle: "",
+    responsibilities: "",
+    beginingOfWork: "",
+    endOfWork: "",
+    })
+  }
+
   return (
     <>
       <div className="form-container">
         <h2>Work experience</h2>
-        <form>
+        <form onSubmit ={handleSubmit}>
           <div className="company-name">
             <label htmlFor="name">Company name</label>
             <input
@@ -21,6 +39,7 @@ export default function ExperienceComponent() {
               name="company-name"
               id="company-name"
               placeholder="Semilab"
+              value={experienceForm.companyName}
               onChange={(e) =>
                 setExperienceForm({
                   ...experienceForm,
@@ -36,6 +55,7 @@ export default function ExperienceComponent() {
               name="position-title"
               id="position-title"
               placeholder="Electrician technican"
+              value={experienceForm.positionTitle}
               onChange={(e) =>
                 setExperienceForm({
                   ...experienceForm,
@@ -53,6 +73,7 @@ export default function ExperienceComponent() {
               name="responsibilities"
               id="responsibilities"
               placeholder="Blueprint reading, build. Electrical installation of silicon measuring devices... "
+              value={experienceForm.responsibilities}
               rows="5"
               cols="33"
               onChange={(e) =>
@@ -70,6 +91,7 @@ export default function ExperienceComponent() {
                 type="date"
                 id="start-date"
                 name="start-date"
+                value={experienceForm.beginingOfWork}
                 onChange={(e) =>
                   setExperienceForm({
                     ...experienceForm,
@@ -84,6 +106,7 @@ export default function ExperienceComponent() {
                 type="date"
                 id="end-date"
                 name="end-date"
+                value={experienceForm.endOfWork}
                 onChange={(e) =>
                   setExperienceForm({
                     ...experienceForm,
@@ -92,6 +115,7 @@ export default function ExperienceComponent() {
                 }
               />
             </div>
+            <button type="submit" onClick={()=>setExperienceForm({...experienceForm, id:uuidv4()})} >Submit</button>
           </div>
         </form>
       </div>
