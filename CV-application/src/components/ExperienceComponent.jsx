@@ -1,10 +1,8 @@
 import { useContext, useState } from "react";
 import { ExperienceContext } from "../contexts/ExperienceContext";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 export default function ExperienceComponent() {
-
   const [experienceForm, setExperienceForm] = useState({
     companyName: "",
     positionTitle: "",
@@ -13,32 +11,30 @@ export default function ExperienceComponent() {
     endOfWork: "",
   });
 
-  const [experienceData, setExperienceData] = useContext(ExperienceContext)
+  const [experienceData, setExperienceData] = useContext(ExperienceContext);
 
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
-    setExperienceData([...experienceData, experienceForm])
+    setExperienceData([...experienceData, experienceForm]);
     setExperienceForm({
-    companyName: "",
-    positionTitle: "",
-    responsibilities: "",
-    beginingOfWork: "",
-    endOfWork: "",
-    })
+      companyName: "",
+      positionTitle: "",
+      responsibilities: "",
+      beginingOfWork: "",
+      endOfWork: "",
+    });
   }
 
   return (
     <>
       <div className="form-container">
-        <h2>Work experience</h2>
-        <form onSubmit ={handleSubmit}>
-          <div className="company-name">
-            <label htmlFor="name">Company name</label>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
             <input
               type="text"
               name="company-name"
               id="company-name"
-              placeholder="Semilab"
+              placeholder="Company name"
               value={experienceForm.companyName}
               onChange={(e) =>
                 setExperienceForm({
@@ -48,13 +44,12 @@ export default function ExperienceComponent() {
               }
             ></input>
           </div>
-          <div className="position-title">
-            <label htmlFor="adress">Position title</label>
+          <div className="input-container">
             <input
               type="text"
               name="position-title"
               id="position-title"
-              placeholder="Electrician technican"
+              placeholder="Position title"
               value={experienceForm.positionTitle}
               onChange={(e) =>
                 setExperienceForm({
@@ -64,28 +59,25 @@ export default function ExperienceComponent() {
               }
             ></input>
           </div>
-          <div className="responsibilities">
-            <label htmlFor="about-you">
-              Main responsibilities of your jobs
-            </label>
-            <input
+          <div className="input-container">
+            <textarea
               type="textarea"
               name="responsibilities"
               id="responsibilities"
-              placeholder="Blueprint reading, build. Electrical installation of silicon measuring devices... "
+              rows={4}
+              cols={40}
+              placeholder="Main responsibilities of your jobs"
               value={experienceForm.responsibilities}
-              rows="5"
-              cols="33"
               onChange={(e) =>
                 setExperienceForm({
                   ...experienceForm,
                   responsibilities: e.target.value,
                 })
               }
-            ></input>
+            ></textarea>
           </div>
           <div className="work-date-container">
-            <div className="date-container">
+            <div className="input-container">
               <label htmlFor="start-date">Begining of work</label>
               <input
                 type="date"
@@ -100,7 +92,7 @@ export default function ExperienceComponent() {
                 }
               />
             </div>
-            <div className="input container">
+            <div className="input-container">
               <label htmlFor="end-date">End of work</label>
               <input
                 type="date"
@@ -115,7 +107,14 @@ export default function ExperienceComponent() {
                 }
               />
             </div>
-            <button type="submit" onClick={()=>setExperienceForm({...experienceForm, id:uuidv4()})} >Submit</button>
+            <button
+              type="submit"
+              onClick={() =>
+                setExperienceForm({ ...experienceForm, id: uuidv4() })
+              }
+            >
+              Add experience
+            </button>
           </div>
         </form>
       </div>

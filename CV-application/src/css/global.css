@@ -1,21 +1,30 @@
+:root{
+    --green-color :  #759242;
+    --background-color:  #F2F2EF;
+}
+
 *{
     margin: 0;
     padding:0;
+    box-sizing: border-box;
     font-family: 'Source Serif 4', serif;
+    font-size: 1.1rem;
 }
 
 .layout{
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     justify-content: space-around;
+    padding: 3rem;
 }
 
 .preview-page{
+    background-color: var(--background-color);
     height: 1122px;
     width: 794px;
     padding: 3rem;
-    border: 1px solid black;
+    border: 1px solid var(--green-color);
 }
 
 .header{
@@ -24,11 +33,10 @@
 }
 
 .personal-informations{
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
 }
 
 .personal-info{
@@ -38,7 +46,11 @@
 }
 
 .data-container{
-    width: 16rem;
+    width: 15rem;
+}
+
+.data-container.time-data{
+    width: 9rem;
 }
 
 i{
@@ -52,8 +64,69 @@ i{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-color: var(--green-color);
 }
 
 .education{
     padding-top: 2rem;
+}
+
+.preview-title{
+    border-bottom: 1px solid var(--green-color);
+
+}
+
+.info-container{
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 0 3rem;
+    gap: 2rem;
+    width: 600px;
+}
+
+.form-container-wraper{
+    background-color: var(--background-color);
+    padding: 2rem;
+}
+
+.title{
+    font-size: 1.5rem;
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+
+input, #responsibilities{
+    font-size: 1.2rem;
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+
+label{
+    align-self: center;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+}
+
+button{
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+}
+
+#responsibilities{
+    height: 150px;
+    resize: none;
 }

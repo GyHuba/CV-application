@@ -1,8 +1,8 @@
 import GeneralInformationComponent from "./GeneralInformationComponent";
 import Preview from "./Preview";
-import ExperienceComponent from "./ExperienceComponent";
 import "../css/global.css"
 import EducationHandler from "./EducationHandler";
+import ExperienceHandle from "./ExperienceHandle";
 
 export default function Layout(){
 
@@ -12,7 +12,7 @@ export default function Layout(){
             <div className="form">
                 <GeneralInformationComponent />
                 <EducationHandler />
-                <ExperienceComponent />
+                <ExperienceHandle />
             </div>
             <div className="preview">
                 <Preview />

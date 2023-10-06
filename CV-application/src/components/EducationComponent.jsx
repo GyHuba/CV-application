@@ -16,26 +16,26 @@ export default function EducationComponent() {
   
   function handleSubmit(e){
     e.preventDefault();
-    setEducationDatas([...educationDatas, educationData])
-    setEducationData({
-      schoolName: "",
-      titleOfStudy: "",
-      beginingOfStudies: "",
-      endOfStudies: "",
-    })
+      setEducationDatas([...educationDatas, educationData])
+      setEducationData({
+        schoolName: "",
+        titleOfStudy: "",
+        beginingOfStudies: "",
+        endOfStudies: "",
+      })
   }
+
 
   return (
     <>
       <div className="form-container">
         <form onSubmit ={handleSubmit}>
           <div className="input-container">
-            <label htmlFor="school-name">School name</label>
             <input
               type="text"
               name="school-name"
               id="school-name"
-              placeholder="Progmatic Academy"
+              placeholder="School name"
               value={educationData.schoolName}
               onChange={(e) =>
                 setEducationData({
@@ -46,12 +46,11 @@ export default function EducationComponent() {
             ></input>
           </div>
           <div className="input-container">
-            <label htmlFor="title-of-study">Title of study</label>
             <input
               type="text"
               name="title-of-study"
               id="title-of-study"
-              placeholder="Frontend developer"
+              placeholder="Title of study"
               value={educationData.titleOfStudy}
               onChange={(e) =>
                 setEducationData({
@@ -92,7 +91,7 @@ export default function EducationComponent() {
                 }
               />
             </div>
-              <button type="submit" onClick={()=>setEducationData({...educationData, id:uuidv4()})} >Submit</button>
+              <button type="submit" onClick={()=>setEducationData({...educationData, id:uuidv4()})} >Add education</button>
           </div>
         </form>
       </div>

@@ -6,10 +6,10 @@ import { ExperienceContext } from "../contexts/ExperienceContext";
 
 export default function Preview() {
   const [formData] = useContext(GeneralInformationContext);
-  const [educationDatas, setEducationDatas] = useContext(
+  const [educationDatas] = useContext(
     EducationInformationContext
   );
-  const [experienceData, setExperienceData] = useContext(ExperienceContext)
+  const [experienceData] = useContext(ExperienceContext)
   const [imageUpload] = useContext(ImageContext);
 
   function formatImgUrl() {
@@ -17,16 +17,6 @@ export default function Preview() {
       const url = URL.createObjectURL(imageUpload);
       return url;
     }
-  }
-
-  function deleteEducation(idx) {
-    const newArray = educationDatas.filter((data) => data.id != idx);
-    setEducationDatas(newArray);
-  }
-
-  function deleteExperience(idx) {
-    const newArray = experienceData.filter((data) => data.id != idx);
-    setExperienceData(newArray);
   }
 
   return (
@@ -48,7 +38,7 @@ export default function Preview() {
                 <i className="fa fa-envelope"></i>
                 <span>{formData.email}</span>
               </div>
-              <div className="data-container">
+              <div className="data-container time-data">
                 <i className="fa fa-mobile-phone"></i>
                 <span>+{formData.phone}</span>
               </div>
@@ -58,15 +48,15 @@ export default function Preview() {
                 <i className="fa fa-globe"></i>
                 <span>{formData.website}</span>
               </div>
-              <div className="data-container">
+              <div className="data-container time-data">
                 <i className="fas fa-calendar"></i>
-                <span>{formData.dateOfirth}</span>
+                <span>{formData.dateOfBirth}</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="education">
-          <h2 className="title">Education</h2>
+        <div className="education info-container">
+          <h2 className="preview-title">Education</h2>
           {educationDatas.map((data) => (
             <div key={data.id}>
               <h3>{data.titleOfStudy}</h3>
@@ -75,18 +65,11 @@ export default function Preview() {
                 <span>Begining of studies: {data.beginingOfStudies}</span>
                 <span>End of studies: {data.endOfStudies}</span>
               </div>
-              <button
-                onClick={() => {
-                  deleteEducation(data.id);
-                }}
-              >
-                Delete
-              </button>
             </div>
           ))}
         </div>
-        <div className="work-experience">
-          <h2 className="title">Work experience</h2>
+        <div className="work-experience info-container">
+          <h2 className="preview-title">Work experience</h2>
           {experienceData.map((data)=>(
             <div key={data.id}>
               <h3>{data.positionTitle}</h3>
@@ -96,13 +79,6 @@ export default function Preview() {
                 <span>Begining of work: {data.beginingOfWork}</span>
                 <span>End of work: {data.endOfWork}</span>
               </div>
-              <button
-                onClick={() => {
-                  deleteExperience(data.id);
-                }}
-              >
-                Delete
-              </button>
             </div>
           ))}
         </div>

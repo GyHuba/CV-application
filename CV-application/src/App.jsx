@@ -6,6 +6,7 @@ import { GeneralInformationContextProvider } from "./contexts/GeneralInformation
 import { ImageContextProvider } from "./contexts/ImageContextProvider";
 
 function App() {
+
   return (
     <>
       <ImageContextProvider>
