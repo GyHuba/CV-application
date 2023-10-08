@@ -92,6 +92,7 @@ export default function GeneralInformationComponent() {
               accept="image/jpeg, image/png, image/jpg"
               onChange={(e) => {
                 {
+                  if(e.target.files[0] !== undefined)
                   setImageUpload(e.target.files[0]);
                 }
               }}

@@ -19,11 +19,9 @@ export default function EducationHandler(){
                 <div key={data.id} className="data-card">
               <h3>{data.titleOfStudy}</h3>
               <span>School: {data.schoolName}</span>
-              <div className="time-wraper">
                 <span>Begining of studies: {data.beginingOfStudies}</span>
                 <span>End of studies: {data.endOfStudies}</span>
-              </div>
-              <button
+              <button className="delete-btn"
                 onClick={() => {
                   deleteEducation(data.id);
                 }}

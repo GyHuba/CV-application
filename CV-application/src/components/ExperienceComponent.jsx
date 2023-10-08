@@ -66,6 +66,7 @@ export default function ExperienceComponent() {
               id="responsibilities"
               rows={4}
               cols={40}
+              maxLength={150}
               placeholder="Main responsibilities of your jobs"
               value={experienceForm.responsibilities}
               onChange={(e) =>

@@ -20,11 +20,9 @@ export default function ExperienceHandle() {
             <h3>{data.positionTitle}</h3>
               <span>Company: {data.companyName}</span>
               <div className="responsibilities">{data.responsibilities}</div>
-              <div className="time-wraper">
                 <span>Begining of work: {data.beginingOfWork}</span>
                 <span>End of work: {data.endOfWork}</span>
-              </div>
-            <button
+            <button className="delete-btn"
               onClick={() => {
                 deleteExperience(data.id);
               }}
