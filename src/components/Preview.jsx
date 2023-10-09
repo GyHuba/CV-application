@@ -26,11 +26,15 @@ export default function Preview() {
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4", true);
+      var width = pdf.internal.pageSize.getWidth();
+      var height = pdf.internal.pageSize.getHeight();
       pdf.addImage(
         imgData,
         "PNG",
         0,
-        0
+        0,
+        width,
+        height
       );
       pdf.save("CV.pdf");
     });
